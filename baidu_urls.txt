@@ -1,1 +1,1 @@
-http://yoursite.com/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/
+http://www.huangweiliang.com/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/

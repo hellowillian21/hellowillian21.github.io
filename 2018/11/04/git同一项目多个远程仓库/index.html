@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        
+        git同一项目多个远程仓库｜undefined
         
     </title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/archives/2018/10/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/04/git同一项目多个远程仓库/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -124,214 +124,153 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>git同一项目多个远程仓库</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-11-04
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#git" title="git">git</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/31/执行上下文生命周期/">
-        <h2 class="post-title">
-            执行上下文生命周期
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                1.创建
-生成变量对象  
-VO AO
-
-
-建立作用域  
-提升
-
-
-确定this指向  
-
-2.执行
-变量赋值  
-函数引用  
-执行其他代码  
-
-3.执行后出栈，等待被回收
-            </p>
         </div>
-    </a>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            git同一项目多个远程仓库
+        </span>
+    </div>
+</header>
 
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/21/解决inline-block缝隙问题/">
-        <h2 class="post-title">
-            解决inline-block缝隙问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-21
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <blockquote>
+<p>某些场合一个git项目需要能同时使用两个甚至多个远程仓库，比如国内+国外、测试环境+生产环境，等等。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在项目的根目录查看git配置文件，一般来说是这样的：  </p>
+<pre><code>[core]  
+    repositoryformatversion = 0
+    filemode = false
+    bare = false
+    logallrefupdates = true
+    symlinks = false
+    ignorecase = true  
+</code></pre><p>还有, 我们常用的git remote add origin <a href="https://git.oschina.net/mvpboss1004/Availability.git中，origin只是个名字。" target="_blank" rel="noopener">https://git.oschina.net/mvpboss1004/Availability.git中，origin只是个名字。</a></p>
+<h3 id="2-添加多个远程仓库"><a href="#2-添加多个远程仓库" class="headerlink" title="2.添加多个远程仓库"></a>2.添加多个远程仓库</h3><p>修改config文件，加入多个远程仓库，并且为其命名，比如origin, seek42:  </p>
+<pre><code>[remote &quot;origin&quot;]
+        url = git@github.com:hellowillian21/time-task-manage-mp.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[remote &quot;seek42&quot;]
+        url = git@github.com:seek42/time-task-manage-mp.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch &quot;master&quot;]
+        remote = origin
+        remote = seek42
+        merge = refs/heads/master  
+</code></pre><h3 id="3-pull操作"><a href="#3-pull操作" class="headerlink" title="3.pull操作"></a>3.pull操作</h3><p>使用以下命令，可以分别从两个远程仓库pull：  </p>
+<pre><code>git pull origin master
+git pull mirror master  
+</code></pre><h3 id="4-push操作"><a href="#4-push操作" class="headerlink" title="4.push操作"></a>4.push操作</h3><p>使用以下命令，可以分别push到两个远程仓库：  </p>
+<pre><code>git push origin master
+git push mirror master
+</code></pre>
+                <hr>
                 
-当元素是非块级元素（span，a等，或者display: inline;(display: inline-block)）时，元素在一行内排列，会有左右缝隙的问题。  
 
-  
-html:
-12345&lt;div class=&quot;test&quot;&gt;  &lt;div&gt;c..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/">
-        <h2 class="post-title">
-            关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                问题在连接github时，执行”ssh -T git@github.com“命令时，出现
-
-Error: ssh: connect to host github.com port 22: Connection refused  
-
-
-解决办法在存放公钥私钥(id_rsa和id_rsa.pub)的..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
+                <ul class="pager">
                     
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
-                    <h5><a href="/about/">黄伟亮</a></h5>
+                    <li class="next">
+                        <a href="/2018/10/31/执行上下文生命周期/" data-toggle="tooltip" data-placement="top" title="执行上下文生命周期">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-前言"><span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-添加多个远程仓库"><span class="toc-text">2.添加多个远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-pull操作"><span class="toc-text">3.pull操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-push操作"><span class="toc-text">4.push操作</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#git" title="git">git</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="黄伟亮" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <!-- <title>
+        
+        vuex入门｜undefined
+        
+    </title> -->
+    <title>黄伟亮的博客</title>
+
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/07/vuex入门/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https'){
+           bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+          }
+          else{
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</head>
+
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+" data-ishome="false">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    黄伟亮
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>vuex入门</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-11-07
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            vuex入门
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <blockquote>
+<p>如果你在使用<code>vue.js</code>，那么你可能会对vue组件之间的通信感到崩溃<br><a id="more"></a></p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>我在使用基于 vue.js 2.0 的UI框架 ElementUI 开发网站的时候 , 就遇到了这种问题 : 一个页面有很多表单 , 我试图将表单写成一个单文件组件 , 但是表单 ( 子组件 ) 里的数据和页面 ( 父组件 ) 按钮交互的时候 , 它们之间的通讯很麻烦 :</p>
+<pre><code>&lt;!--父组件中引入子组件--&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;javascript:;&quot; @click=&quot;show = true&quot;&gt;点击&lt;/a&gt;
+    &lt;t-dialog :show.sync=&quot;show&quot;&gt;&lt;/t-dialog&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import dialog from &apos;./components/dialog.vue&apos;
+export default {
+  data(){
+    return {
+      show:false
+    }
+  },
+  components:{
+    &quot;t-dialog&quot;:dialog
+  }
+}
+&lt;/script&gt;
+
+
+&lt;!--子组件--&gt;
+&lt;template&gt;
+  &lt;el-dialog :visible.sync=&quot;currentShow&quot;&gt;&lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props:[&apos;show&apos;],
+  computed:{
+      currentShow:{
+          get(){
+              return this.show
+          },
+          set(val){
+              this.$emit(&quot;update:show&quot;,val)
+          }
+      }
+  }
+}
+&lt;/script&gt;
+</code></pre><p>之所以这么麻烦 , 是因为父组件可以通过 props 给子组件传递参数 , 但子组件内却不能直接修改父组件传过来的参数。这时候 , 使用 vuex 就可以比较方便的解决这种问题了 :  </p>
+<pre><code>&lt;!--父组件中引入子组件--&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;javascript:;&quot; @click=&quot;$store.state.show = true&quot;&gt;点击&lt;/a&gt;
+    &lt;t-dialog&gt;&lt;/t-dialog&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import dialog from &apos;./components/dialog.vue&apos;
+export default {
+  components:{
+    &quot;t-dialog&quot;:dialog
+  }
+}
+&lt;/script&gt;
+
+
+&lt;!--子组件--&gt;
+&lt;template&gt;
+  &lt;el-dialog :visible.sync=&quot;$store.state.show&quot;&gt;&lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {}
+&lt;/script&gt;
+</code></pre><p>是不是方便了许多 , 这就是 vuex 最简单的应用 , 不要被网上其他教程吓到 , vuex 原来可以这么简单 !</p>
+<h2 id="安装、使用vuex"><a href="#安装、使用vuex" class="headerlink" title="安装、使用vuex"></a>安装、使用vuex</h2><p>首先我们在 vue.js 2.0 开发环境中安装 vuex :  </p>
+<pre><code>npm install vuex --save
+</code></pre><p>然后 , 在 <code>main.js</code> 中加入 :  </p>
+<pre><code>import vuex from &apos;vuex&apos;
+Vue.use(vuex);
+var store = new vuex.Store({//store对象
+    state:{
+        show:false
+    }
+})
+</code></pre><p>再然后 , 在实例化 Vue对象时加入 store 对象 :</p>
+<pre><code>new Vue({
+  el: &apos;#app&apos;,
+  router,
+  store,//使用store
+  template: &apos;&lt;App/&gt;&apos;,
+  components: { App }
+})
+</code></pre><p>完成到这一步 , 上述例子中的 $store.state.show 就可以使用了。</p>
+<h2 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h2><p>前面为了方便 , 我们把 store 对象写在了 main.js 里面 , 但实际上为了便于日后的维护 , 我们分开写更好 , 我们在 <code>src</code> 目录下 , 新建一个 <code>store</code> 文件夹 , 然后在里面新建一个 <code>index.js</code> :</p>
+<pre><code>import Vue from &apos;vue&apos;
+import vuex from &apos;vuex&apos;
+Vue.use(vuex);
+
+export default new vuex.Store({
+    state:{
+        show:false
+    }
+})
+</code></pre><p>那么相应的 , 在 <code>main.js</code> 里的代码应该改成 :  </p>
+<pre><code>//vuex
+import store from &apos;./store&apos;
+
+new Vue({
+  el: &apos;#app&apos;,
+  router,
+  store,//使用store
+  template: &apos;&lt;App/&gt;&apos;,
+  components: { App }
+})
+</code></pre><p>这样就把 store 分离出去了 , 那么还有一个问题是 : 这里 <code>$store.state.show</code> 无论哪个组件都可以使用 , 那组件多了之后 , 状态也多了 , 这么多状态都堆在 store 文件夹下的 <code>index.js</code> 不好维护怎么办 ? </p>
+<p>我们可以使用 vuex 的 <code>modules</code> , 把 store 文件夹下的 <code>index.js</code> 改成 :</p>
+<pre><code>import Vue from &apos;vue&apos;
+import vuex from &apos;vuex&apos;
+Vue.use(vuex);
+
+import dialog_store from &apos;../components/dialog_store.js&apos;;//引入某个store对象
+
+export default new vuex.Store({
+    modules: {
+        dialog: dialog_store
+    }
+})
+</code></pre><p>这里我们引用了一个 dialog_store.js , 在这个 js 文件里我们就可以单独写 dialog 组件的状态了 :</p>
+<pre><code>export default {
+    state:{
+        show:false
+    }
+}
+</code></pre><p>做出这样的修改之后 , 我们将之前我们使用的 <code>$store.state.show</code> 统统改为 <code>$store.state.dialog.show</code> 即可。</p>
+<p>如果还有其他的组件需要使用 vuex , 就新建一个对应的状态文件 , 然后将他们加入 store 文件夹下的 index.js 文件中的 <code>modules</code> 中。</p>
+<pre><code>modules: {
+    dialog: dialog_store,
+    other: other,//其他组件
+}
+</code></pre><h2 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h2><p>前面我们提到的对话框例子 , 我们对vuex 的依赖仅仅只有一个 <code>$store.state.dialog.show</code> 一个状态 , 但是如果我们要进行一个操作 , 需要依赖很多很多个状态 , 那管理起来又麻烦了 !<br><code>mutations</code> 登场 , 问题迎刃而解 :</p>
+<pre><code>export default {
+    state:{//state
+        show:false
+    },
+    mutations:{
+        switch_dialog(state){//这里的state对应着上面这个state
+            state.show = state.show?false:true;
+            //你还可以在这里执行其他的操作改变state
+        }
+    }
+}
+</code></pre><p>使用 mutations 后 , 原先我们的父组件可以改为 :</p>
+<pre><code>&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;a href=&quot;javascript:;&quot; @click=&quot;$store.commit(&apos;switch_dialog&apos;)&quot;&gt;点击&lt;/a&gt;
+    &lt;t-dialog&gt;&lt;/t-dialog&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import dialog from &apos;./components/dialog.vue&apos;
+export default {
+  components:{
+    &quot;t-dialog&quot;:dialog
+  }
+}
+&lt;/script&gt;
+</code></pre><p>使用 <code>$store.commit(&#39;switch_dialog&#39;)</code> 来触发 <code>mutations</code> 中的 <code>switch_dialog</code> 方法。</p>
+<p>这里需要注意的是:</p>
+<ul>
+<li><ol>
+<li><code>mutations</code> 中的方法是不分组件的 , 假如你在 dialog_stroe.js 文件中的定义了 <code>switch_dialog</code> 方法 , 在其他文件中的一个 <code>switch_dialog</code> 方法 , 那么<code>$store.commit(&#39;switch_dialog&#39;)</code> 会执行所有的 <code>switch_dialog</code> 方法。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>mutations里的操作必须是同步的。<br>你一定好奇 , 如果在 mutations 里执行异步操作会发生什么事情 , 实际上并不会发生什么奇怪的事情 , 只是官方推荐 , 不要在 mutationss 里执行异步操作而已。  </li>
+</ol>
+</li>
+</ul>
+<h2 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h2><p>多个 state 的操作 , 使用 mutations 会来触发会比较好维护 , 那么需要执行多个 mutations 就需要用 action 了:</p>
+<pre><code>export default {
+    state:{//state
+        show:false
+    },
+    mutations:{
+        switch_dialog(state){//这里的state对应着上面这个state
+            state.show = state.show?false:true;
+            //你还可以在这里执行其他的操作改变state
+        }
+    },
+    actions:{
+        switch_dialog(context){//这里的context和我们使用的$store拥有相同的对象和方法
+            context.commit(&apos;switch_dialog&apos;);
+            //你还可以在这里触发其他的mutations方法
+        },
+    }
+}
+</code></pre><p>那么 , 在之前的父组件中 , 我们需要做修改 , 来触发 action 里的 switch_dialog 方法:</p>
+<pre><code>&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;a href=&quot;javascript:;&quot; @click=&quot;$store.dispatch(&apos;switch_dialog&apos;)&quot;&gt;点击&lt;/a&gt;
+    &lt;t-dialog&gt;&lt;/t-dialog&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import dialog from &apos;./components/dialog.vue&apos;
+export default {
+  components:{
+    &quot;t-dialog&quot;:dialog
+  }
+}
+&lt;/script&gt;
+</code></pre><p>使用 <code>$store.dispatch(&#39;switch_dialog&#39;)</code> 来触发 <code>action</code> 中的 <code>switch_dialog</code> 方法。</p>
+<p>官方推荐 , 将异步操作放在 action 中。</p>
+<h2 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h2><p><code>getters</code> 和 vue 中的 <code>computed</code> 类似 , 都是用来计算 state 然后生成新的数据 ( 状态 ) 的。</p>
+<p>还是前面的例子 , 假如我们需要一个与状态 show 刚好相反的状态 , 使用 vue 中的 computed 可以这样算出来 :</p>
+<pre><code>computed(){
+    not_show(){
+        return !this.$store.state.dialog.show;
+    }
+}
+</code></pre><p>那么 , 如果很多很多个组件中都需要用到这个与 show 刚好相反的状态 , 那么我们需要写很多很多个 <code>not_show</code> , 使用 <code>getters</code> 就可以解决这种问题 :</p>
+<pre><code>export default {
+    state:{//state
+        show:false
+    },
+    getters:{
+        not_show(state){//这里的state对应着上面这个state
+            return !state.show;
+        }
+    },
+    mutations:{
+        switch_dialog(state){//这里的state对应着上面这个state
+            state.show = state.show?false:true;
+            //你还可以在这里执行其他的操作改变state
+        }
+    },
+    actions:{
+        switch_dialog(context){//这里的context和我们使用的$store拥有相同的对象和方法
+            context.commit(&apos;switch_dialog&apos;);
+            //你还可以在这里触发其他的mutations方法
+        },
+    }
+}
+</code></pre><p>我们在组件中使用 <code>$store.state.dialog.show</code> 来获得状态 <code>show</code> , 类似的 , 我们可以使用 <code>$store.getters.not_show</code> 来获得状态 <code>not_show</code> 。</p>
+<p>注意 : <code>$store.getters.not_show</code> 的值是不能直接修改的 , 需要对应的 <code>state</code> 发生变化才能修改。</p>
+<h2 id="mapState、mapGetters、mapActions"><a href="#mapState、mapGetters、mapActions" class="headerlink" title="mapState、mapGetters、mapActions"></a>mapState、mapGetters、mapActions</h2><p>很多时候 , <code>$store.state.dialog.show</code> 、<code>$store.dispatch(&#39;switch_dialog&#39;)</code> 这种写法又长又臭 , 很不方便 , 我们没使用 vuex 的时候 , 获取一个状态只需要 <code>this.show</code> , 执行一个方法只需要 <code>this.switch_dialog</code> 就行了 , 使用 vuex 使写法变复杂了 ?</p>
+<p>使用 mapState、mapGetters、mapActions 就不会这么复杂了。</p>
+<p>以 mapState 为例 :</p>
+<pre><code>&lt;template&gt;
+  &lt;el-dialog :visible.sync=&quot;show&quot;&gt;&lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import {mapState} from &apos;vuex&apos;;
+export default {
+  computed:{
+
+    //这里的三点叫做 : 扩展运算符
+    ...mapState({
+      show:state=&gt;state.dialog.show
+    }),
+  }
+}
+&lt;/script&gt;
+</code></pre><p>相当于 :</p>
+<pre><code>&lt;template&gt;
+  &lt;el-dialog :visible.sync=&quot;show&quot;&gt;&lt;/el-dialog&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import {mapState} from &apos;vuex&apos;;
+export default {
+  computed:{
+    show(){
+        return this.$store.state.dialog.show;
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre><p>mapGetters、mapActions 和 mapState 类似 , <code>mapGetters</code> 一般也写在 <code>computed</code> 中 , <code>mapActions</code> 一般写在 <code>methods</code> 中。  </p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/11/04/git同一项目多个远程仓库/" data-toggle="tooltip" data-placement="top" title="git同一项目多个远程仓库">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装、使用vuex"><span class="toc-text">安装、使用vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#modules"><span class="toc-text">modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutations"><span class="toc-text">mutations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#actions"><span class="toc-text">actions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getters"><span class="toc-text">getters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapState、mapGetters、mapActions"><span class="toc-text">mapState、mapGetters、mapActions</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/hellowillian21">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/hellowillian21">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄伟亮 2018
+                    <br>
+                    黄伟亮的博客 | 技术 | 记录 | 分享
+                    <br>
+                    部分内容来自网络,如有侵权请联系删除
+                    <!-- <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br> -->
+                    <!-- Theme by <a href="https://haojen.github.io/">Haojen Ma</a> -->
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.huangweiliang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
+</body>
+
+</html>

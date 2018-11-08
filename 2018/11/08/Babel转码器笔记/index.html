@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        
+        Babel转码器笔记｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/tags/vue/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/08/Babel转码器笔记/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -59,7 +59,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -140,151 +140,186 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Babel转码器笔记</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-11-08
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            Babel转码器笔记
+        </span>
+    </div>
+</header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <blockquote>
+<p>Babel (<a href="babeljs.io">babeljs.io</a>) 是一个广为使用的es6转码器,可以将es6代码转为es5代码，使得编写es6程序不用担心现有环境是否支持。以下为学习阮一峰babel摘要笔记。</p>
+</blockquote>
+<h2 id="1、配置文件-babelrc"><a href="#1、配置文件-babelrc" class="headerlink" title="1、配置文件 .babelrc"></a>1、配置文件 .babelrc</h2><p>Babel的配置文件是<code>.babelrc</code>。该文件基本格式:</p>
+<pre><code>{
+    &quot;presets&quot;: [],
+    &quot;plugins&quot;: []
+}
+</code></pre><p>presets字段设定转码规则， 官方提供以下的规则集，可以根据需要进行安装。</p>
+<pre><code># 最新转码规则
+npm install babel-preset-latest --save-dev
 
+# react 转码规则
+npm install babel-preset-react --save-dev
 
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/07/vuex入门/">
-        <h2 class="post-title">
-            vuex入门
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-07
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
+# 不同阶段语法提案的转码规则（共有四个阶段），选装一个
+npm install babel-preset-stage-0
+
+npm install babel-preset-stage-1
+
+npm install babel-preset-stage-2
+
+npm install babel-preset-stage-3
+</code></pre><p>然后将这些规则加入.babelrc中。</p>
+<pre><code>{
+&quot;presets&quot;: [
+    &quot;latest&quot;,
+    &quot;react&quot;,
+    &quot;stage-2&quot;
+],
+&quot;plugins&quot;: []
+}
+</code></pre><h2 id="2、命令行转码babel-cli"><a href="#2、命令行转码babel-cli" class="headerlink" title="2、命令行转码babel-cli"></a>2、命令行转码babel-cli</h2><p>Babel提供<code>babel-cli</code>工具，用于命令行转码。在项目中安装<code>babel-cli</code></p>
+<pre><code>npm install babel-cli --save-dev
+</code></pre><p>然后改写package.json</p>
+<pre><code>{
+  &quot;name&quot;: &quot;test&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;babel src -d lib&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-cli&quot;: &quot;^6.26.0&quot;,
+    &quot;babel-preset-latest&quot;: &quot;^6.24.1&quot;,
+    &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;,
+    &quot;babel-preset-stage-3&quot;: &quot;^6.24.1&quot;
+  }
+}
+</code></pre><p>执行转码命令</p>
+<pre><code>npm run build
+</code></pre><p>那么babel就会把src下的js文件转码后存放在我们指定的lib文件夹下。</p>
+<h2 id="3、babel-polyfill"><a href="#3、babel-polyfill" class="headerlink" title="3、babel-polyfill"></a>3、babel-polyfill</h2><p>由于Babel只转换新的语法而不转换新的API,所以需要使用babel-polyfill为当前环境提供一个垫片</p>
+<p>安装命令如下:</p>
+<pre><code>npm install babel-polyfill
+</code></pre><p>然后在脚本头部加入如下代码:</p>
+<pre><code>import &apos;babel-polyfill&apos;
+//或者
+require(&apos;babel-polyfill&apos;)
+</code></pre>
+                <hr>
                 
-如果你在使用vue.js，那么你可能会对vue组件之间的通信感到崩溃
 
-介绍我在使用基于 vue.js 2.0 的UI框架 ElementUI 开发网站的时候 , 就遇到了这种问题 : 一个页面有很多表单 , 我试图将表单写成一个单文件组件 , 但是表单 ( 子组件 ) 里的数据和页面 ( 父..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
+                <ul class="pager">
                     
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
-                    <h5><a href="/about/">黄伟亮</a></h5>
+                    <li class="next">
+                        <a href="/2018/11/07/vuex入门/" data-toggle="tooltip" data-placement="top" title="vuex入门">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、配置文件-babelrc"><span class="toc-text">1、配置文件 .babelrc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、命令行转码babel-cli"><span class="toc-text">2、命令行转码babel-cli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、babel-polyfill"><span class="toc-text">3、babel-polyfill</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#JavaScript" title="JavaScript" rel="2">JavaScript</a>
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

@@ -233,7 +233,7 @@ npm install babel-preset-stage-3
   &quot;scripts&quot;: {
     &quot;build&quot;: &quot;babel src -d lib&quot;
   },
-  &quot;author&quot;: &quot;&quot;,
+  &quot;author&quot;: &quot;hellowillian21&quot;,
   &quot;license&quot;: &quot;ISC&quot;,
   &quot;devDependencies&quot;: {
     &quot;babel-cli&quot;: &quot;^6.26.0&quot;,
@@ -247,7 +247,7 @@ npm install babel-preset-stage-3
 </code></pre><p>那么babel就会把src下的js文件转码后存放在我们指定的lib文件夹下。</p>
 <h2 id="3、babel-polyfill"><a href="#3、babel-polyfill" class="headerlink" title="3、babel-polyfill"></a>3、babel-polyfill</h2><p>由于Babel只转换新的语法而不转换新的API,所以需要使用babel-polyfill为当前环境提供一个垫片</p>
 <p>安装命令如下:</p>
-<pre><code>npm install babel-polyfill
+<pre><code>npm install babel-polyfill --save
 </code></pre><p>然后在脚本头部加入如下代码:</p>
 <pre><code>import &apos;babel-polyfill&apos;
 //或者

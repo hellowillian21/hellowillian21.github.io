@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        
+        vue中关于$emit的用法｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/archives/2018/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/13/vue中关于$emit的用法/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -59,7 +59,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -140,358 +140,178 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>vue中关于$emit的用法</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-11-13
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/13/vue中关于$emit的用法/">
-        <h2 class="post-title">
+    <div class="post-title-haojen">
+        <span>
             vue中关于$emit的用法
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-13
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                知识点
-1、 父组件可以使用props把数据传给子组件。  
-2、 子组件可以使用$emit触发父组件的自定义事件。  
-
-vm.$emit(event, arg) //触发当前实例上的事件  
-
-vm.$on(event, fn) // 监听evnet事件后运行fn  
-
-示例子组件：
-&lt..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/09/vuex参数解构问题/">
-        <h2 class="post-title">
-            Vuex的Action中参数解构的使用
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                // 对象解构例子：
-let { foo, bar } = { foo: &quot;aaa&quot;, bar: &quot;bbb&quot; }
-foo // &quot;aaa&quot;
-bar // &quot;bbb&quot;
-Action 函数接受一个与 store 实例具有..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/08/Babel转码器笔记/">
-        <h2 class="post-title">
-            Babel转码器笔记
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-08
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-Babel (babeljs.io) 是一个广为使用的es6转码器,可以将es6代码转为es5代码，使得编写es6程序不用担心现有环境是否支持。以下为学习阮一峰babel摘要笔记。
-
-1、配置文件 .babelrcBabel的配置文件是.babelrc。该文件基本格式:
-{
-    &quot..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/07/vuex入门/">
-        <h2 class="post-title">
-            vuex入门
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-07
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-如果你在使用vue.js，那么你可能会对vue组件之间的通信感到崩溃
-
-介绍我在使用基于 vue.js 2.0 的UI框架 ElementUI 开发网站的时候 , 就遇到了这种问题 : 一个页面有很多表单 , 我试图将表单写成一个单文件组件 , 但是表单 ( 子组件 ) 里的数据和页面 ( 父..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/04/git同一项目多个远程仓库/">
-        <h2 class="post-title">
-            git同一项目多个远程仓库
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-04
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-某些场合一个git项目需要能同时使用两个甚至多个远程仓库，比如国内+国外、测试环境+生产环境，等等。
-
-1.前言在项目的根目录查看git配置文件，一般来说是这样的：  
-[core]  
-    repositoryformatversion = 0
-    filemode = false
-..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/31/执行上下文生命周期/">
-        <h2 class="post-title">
-            执行上下文生命周期
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                1.创建
-生成变量对象  
-VO AO
-
-
-建立作用域  
-提升
-
-
-确定this指向  
-
-2.执行
-变量赋值  
-函数引用  
-执行其他代码  
-
-3.执行后出栈，等待被回收
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/21/解决inline-block缝隙问题/">
-        <h2 class="post-title">
-            解决inline-block缝隙问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-21
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-当元素是非块级元素（span，a等，或者display: inline;(display: inline-block)）时，元素在一行内排列，会有左右缝隙的问题。  
-
-  
-html:
-12345&lt;div class=&quot;test&quot;&gt;  &lt;div&gt;c..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/">
-        <h2 class="post-title">
-            关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                问题在连接github时，执行”ssh -T git@github.com“命令时，出现
-
-Error: ssh: connect to host github.com port 22: Connection refused  
-
-
-解决办法在存放公钥私钥(id_rsa和id_rsa.pub)的..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
-                    
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                    
-                    <h5><a href="/about/">黄伟亮</a></h5>
-                    
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-
-                        
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#vue" title="vue" rel="3">vue</a>
-                    
-                    
-                    
-                    <a href="/tags/#JavaScript" title="JavaScript" rel="2">JavaScript</a>
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
-        </div>
+        </span>
     </div>
-</div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li>1、 父组件可以使用props把数据传给子组件。  </li>
+<li><p>2、 子组件可以使用$emit触发父组件的自定义事件。  </p>
+</li>
+<li><p>vm.$emit(event, arg) //触发当前实例上的事件  </p>
+</li>
+<li>vm.$on(event, fn) // 监听evnet事件后运行fn  </li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>子组件：</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;train-city&quot;&gt;
+    &lt;h3&gt;父组件传给子组件的toCity:{{sendData}}&lt;/h3&gt; 
+    &lt;br/&gt;&lt;button @click=&apos;select(`大连`)&apos;&gt;点击此处将‘大连’发射给父组件&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name:&apos;trainCity&apos;,
+    props:[&apos;sendData&apos;], // 用来接收父组件传给子组件的数据
+    methods:{
+      select(val) {
+        let data = {
+          cityname: val
+        };
+        this.$emit(&apos;showCityName&apos;,data);//select事件触发后，自动触发showCityName事件
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre><p>父组件:</p>
+<pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;div&gt;父组件的toCity{{toCity}}&lt;/div&gt;
+        &lt;train-city @showCityName=&quot;updateCity&quot; :sendData=&quot;toCity&quot;&gt;&lt;/train-city&gt;
+    &lt;/div&gt;
+&lt;template&gt;
+&lt;script&gt;
+  import TrainCity from &quot;./train-city&quot;;
+  export default {
+    name:&apos;index&apos;,
+    components: {TrainCity},
+    data () {
+      return {
+        toCity:&quot;北京&quot;
+      }
+    },
+    methods:{
+      updateCity(data){//触发子组件城市选择-选择城市的事件
+        this.toCity = data.cityname;//改变了父组件的值
+        console.log(&apos;toCity:&apos;+this.toCity)
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/11/09/vuex参数解构问题/" data-toggle="tooltip" data-placement="top" title="Vuex的Action中参数解构的使用">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

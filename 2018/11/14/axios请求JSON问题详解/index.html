@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        使用Access-Control-Allow-Origin解决跨域｜undefined
+        axios请求JSON问题详解｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/13/使用Access-Control-Allow-Origin解决跨域/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/14/axios请求JSON问题详解/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,17 +146,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>使用Access-Control-Allow-Origin解决跨域</h1>
+                    <h1>axios请求JSON问题详解</h1>
                     
                     <span class="meta">
                          作者 黄伟亮
                         <span>
-                          日期 2018-11-13
+                          日期 2018-11-14
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#http" title="http">http</a>
+                        <a class="tag" href="/tags/#axios" title="axios">axios</a>
                         
                     </div>
                 </div>
@@ -165,7 +165,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            使用Access-Control-Allow-Origin解决跨域
+            axios请求JSON问题详解
         </span>
     </div>
 </header>
@@ -176,26 +176,63 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><p>当两个域具有相同的协议(如http),相同的端口(如80),相同的host（如<a href="http://www.google.com）" target="_blank" rel="noopener">www.google.com）</a>, 那么我们就可以认为他们是相同的域(协议，域名，端口都必须相同)。<br>跨域就是指着协议，域名，端口不一致，处于安全考虑，跨域的资源之间是无法交互的。  </p>
-<h2 id="Access-Control-Allow-Origin"><a href="#Access-Control-Allow-Origin" class="headerlink" title="Access-Control-Allow-Origin"></a>Access-Control-Allow-Origin</h2><p>Access-Control-Allow-Origin 是HTML5中定义的一种解决资源跨域的策略。<br>它是通过服务器返回带有Access-Control-Allow-Origin标识的Response header， 用来解决资源的跨域权限问题。<br>使用方法，在Response添加Access-Control-Allow-Origin， 例如：</p>
-<pre><code>Access-Control-Allow-Origin：www.google.com
-</code></pre><p><a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> 是访问的域名，根据实际情况设置。<br>也可以设置为*表示资源谁都可以用</p>
-<pre><code>Access-Control-Allow-Origin：*
-</code></pre><p>如果资源是HTML页面，可以设置  </p>
-<pre><code>&lt;meta http-equiv=&quot;Access-Control-Allow-Origin&quot; content=&quot;*&quot;&gt;
+                <p>1、当参数是<code>JSON对象</code>时，默认的Content-Type是<code>application/json</code>。  </p>
+<pre><code>axios.post(&apos;/user&apos;, {
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+</code></pre><p>此时传递的参数是Request Payload格式{firstName:”Fred”,lastName:”Flintstone”}  </p>
+<blockquote>
+<p>如果出现No ‘Access-Control-Allow-Origin’ header is present on the requested resource的错误，则是跨域问题。</p>
+</blockquote>
+<p>2、当参数是<code>JSON字符串</code>时，默认的Content-Type是<code>application/x-www-form-urlencoded</code>。  </p>
+<pre><code>axios.post(&apos;/user&apos;, JSON.stringify({
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  }))
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+</code></pre><p>此时传递的参数是Form Data格式 <code>key : value</code>：  </p>
+<pre><code>{&quot;firstName&quot;:&quot;Fred&quot;,&quot;lastName&quot;:&quot;Flintstone&quot;}:  
+</code></pre><p>如上。其实这是一个无效的数据，key为 <code>{&quot;firstName&quot;:&quot;Fred&quot;,&quot;lastName&quot;:&quot;Flintstone&quot;}</code>, value为空。  </p>
+<p>3、要想使用application/x-www-form-urlencoded格式，需要进行数据转换，有URLSearchParams和qs两种方式进行转换。如<code>qs</code>库的方式，代码如下:  </p>
+<pre><code>// 请求拦截器
+axios.interceptors.request.use((req) =&gt; {
+    if (req.method === &apos;post&apos;) {
+     req.data = qs.stringify(req.data);
+    }
+    return req;
+}, (error) =&gt; Promise.reject(error));
+</code></pre><p>之后使用axios的时候，只需要传递json对象就可以：  </p>
+<pre><code>axios.post(&apos;/user&apos;, {
+    firstName: &apos;Fred&apos;,
+    lastName: &apos;Flintstone&apos;
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 </code></pre>
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/11/14/axios请求JSON问题详解/" data-toggle="tooltip" data-placement="top" title="axios请求JSON问题详解">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/11/13/vue中关于$emit的用法/" data-toggle="tooltip" data-placement="top" title="vue中关于$emit的用法">Next Post &rarr;</a>
+                        <a href="/2018/11/13/使用Access-Control-Allow-Origin解决跨域/" data-toggle="tooltip" data-placement="top" title="使用Access-Control-Allow-Origin解决跨域">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -214,7 +251,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是跨域"><span class="toc-text">什么是跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Control-Allow-Origin"><span class="toc-text">Access-Control-Allow-Origin</span></a></li></ol>
+                    
                 </div>
             </div>
         </div>
@@ -236,7 +273,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#http" title="http">http</a>
+                        <a class="tag" href="/tags/#axios" title="axios">axios</a>
                         
                     </div>
                 </section>

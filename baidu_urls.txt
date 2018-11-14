@@ -1,5 +1,5 @@
+http://www.huangweiliang.com/2018/11/14/axios请求JSON问题详解/
 http://www.huangweiliang.com/2018/11/13/使用Access-Control-Allow-Origin解决跨域/
 http://www.huangweiliang.com/2018/11/13/vue中关于$emit的用法/
 http://www.huangweiliang.com/2018/11/09/vuex参数解构问题/
 http://www.huangweiliang.com/2018/11/08/Babel转码器笔记/
-http://www.huangweiliang.com/2018/11/07/vuex入门/

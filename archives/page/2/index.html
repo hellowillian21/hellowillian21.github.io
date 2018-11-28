@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        解决inline-block缝隙问题｜undefined
+        
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/2018/10/21/解决inline-block缝隙问题/">
+    <link rel="canonical" href="http://www.huangweiliang.com/archives/page/2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -126,150 +126,163 @@
 
 <!-- Main Content -->
 
-<!--only post-->
 
-
-<img class="wechat-title-img" src="">
-
-
-<style>
-    
-    header.intro-header {
-        background-image: url('')
-    }
-
-    
-</style>
-
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>解决inline-block缝隙问题</h1>
-                    
-                    <span class="meta">
-                         作者 黄伟亮
-                        <span>
-                          日期 2018-10-21
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#css" title="css">css</a>
-                        
+<!-- Page Header -->
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+    <div class="row">
+        <header class="intro-header">
+            <div class="container">
+                <div class="site-heading text-center">
+                    <div class="about-me">
+                        <!--移动端头部显示-->
+                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
+                        <h5><a href="/about/">黄伟亮</a></h5>
+                        <p>code learner</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     </div>
-    <div class="post-title-haojen">
-        <span>
-            解决inline-block缝隙问题
-        </span>
-    </div>
-</header>
+</div>
+<!-- Main Content -->
+<div class="container custom-haojen-container">
+    <!-- Post Container -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
+            <!-- Main Content -->
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <blockquote>
-<p>当元素是非块级元素（span，a等，或者display: inline;(display: inline-block)）时，元素在一行内排列，会有左右缝隙的问题。  </p>
-</blockquote>
-<a id="more"></a>  
-<p>html:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;test&quot;&gt;</span><br><span class="line">  &lt;div&gt;child1&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;child2&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;child3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>css:   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.test &#123;</span><br><span class="line">  border: 1px solid #000;</span><br><span class="line">&#125;</span><br><span class="line">.test div &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul>
-<li><p>方法1. 把html代码放在一行书写  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;test&quot;&gt;</span><br><span class="line">  &lt;div&gt;child1&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;child2&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;child3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法2. 利用margin: -5px (一般来说是-5px)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.test div &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  background: red;</span><br><span class="line">  margin-left: -5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法3. 利用float 和 BFC</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.test &#123;</span><br><span class="line">  border: 1px solid #000;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.test div &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  background: red;</span><br><span class="line">  float: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法4. 父元素的font-size: 0; 再设置子元素的font-size</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.test &#123;</span><br><span class="line">  border: 1px solid #000;</span><br><span class="line">  font-size: 0;</span><br><span class="line">&#125;</span><br><span class="line">.test div &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  background: red;</span><br><span class="line">  font-size: 16px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+
+
+<div class="post-preview " style="background-image: url('')">
+    <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/">
+        <h2 class="post-title">
+            关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                问题在连接github时，执行”ssh -T git@github.com“命令时，出现
+
+Error: ssh: connect to host github.com port 22: Connection refused  
+
+
+解决办法在存放公钥私钥(id_rsa和id_rsa.pub)的..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+
+<!-- 翻页 pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/archives/">&larr; Newer Posts</a>
+    </li>
+    
+    
 </ul>
 
-                <hr>
-                
 
-                <ul class="pager">
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+            <!-- About Me -->
+            <section class="visible-md visible-lg" style="padding: 0 18px">
+                <div class="short-about">
+                    <!--侧边栏头像-->
+                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
                     
-                    <li class="previous">
-                        <a href="/2018/10/31/执行上下文生命周期/" data-toggle="tooltip" data-placement="top" title="执行上下文生命周期">&larr; Previous Post</a>
-                    </li>
+                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
+                    <h5><a href="/about/">黄伟亮</a></h5>
                     
-                    <li class="next">
-                        <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/" data-toggle="tooltip" data-placement="top" title="关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题">Next Post &rarr;</a>
-                    </li>
+                    <p>code learner</p>
                     
-                </ul>
+                    <hr>
+                    <!-- SNS Link 社交 -->
+                    <ul class="list-inline">
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://twitter.com/hellowillian21">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+                        
 
-                
+                        
 
-                
+                        
 
+                        
+                        <li>
+                            <a target="_blank" href="https://github.com/hellowillian21">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
 
-                <!--加入新的评论系统-->
-                
-
-                
-
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li></ol>
+                        
+                    </ul>
                 </div>
-            </div>
+            </section>
+
+            <!-- Featured Tags  标签 -->
+            
+            <section>
+                <div class="tags">
+                    
+                    
+                    
+                    
+                    <a href="/tags/#JavaScript" title="JavaScript" rel="2">JavaScript</a>
+                    
+                    
+                    
+                    <a href="/tags/#vue" title="vue" rel="4">vue</a>
+                    
+                    
+                    
+                    <a href="/tags/#git" title="git" rel="2">git</a>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </section>
+            
+
+            
+
         </div>
-
-        <div class="row">
-            <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5 class="text-center">
-                        <a href="/tags/">FEATURED TAGS</a>
-                    </h5>
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/#css" title="css">css</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-        </div>
-
     </div>
-</article>
-
-
-
-
-
-
+</div>
 
 <!-- Footer -->
 <!-- Footer -->

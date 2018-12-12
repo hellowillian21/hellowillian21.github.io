@@ -23,7 +23,7 @@
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/archives/2018/10/">
+    <link rel="canonical" href="http://www.huangweiliang.com/tags/Babel/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -154,33 +154,18 @@
 
 
 <div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/31/执行上下文生命周期/">
+    <a href="/2018/12/12/babel-preset-env使用指南/">
         <h2 class="post-title">
-            执行上下文生命周期
+            babel-preset-env使用指南
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-31
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-12
         </p>
         
         <div class="post-content-preview">
             <p>
-                1.创建
-生成变量对象  
-VO AO
-
-
-建立作用域  
-提升
-
-
-确定this指向  
-
-2.执行
-变量赋值  
-函数引用  
-执行其他代码  
-
-3.执行后出栈，等待被回收
+                前言babel-preset-env 是非常重要且常用的插件预设。  
+最初，为了让开发者能够尽早用上新的JS的特性，babel团队开发了babel-preset-latest。这个preset比较特殊，它是多个preset的集合(es2015+)，并且随着ECMA规范的更新更加增加它的内容。比..
             </p>
         </div>
     </a>
@@ -192,49 +177,22 @@ VO AO
 
 
 <div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/21/解决inline-block缝隙问题/">
+    <a href="/2018/11/08/Babel转码器笔记/">
         <h2 class="post-title">
-            解决inline-block缝隙问题
+            Babel转码器笔记
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-21
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-08
         </p>
         
         <div class="post-content-preview">
             <p>
                 
-当元素是非块级元素（span，a等，或者display: inline;(display: inline-block)）时，元素在一行内排列，会有左右缝隙的问题。  
+Babel (babeljs.io) 是一个广为使用的es6转码器,可以将es6代码转为es5代码，使得编写es6程序不用担心现有环境是否支持。以下为学习阮一峰babel摘要笔记。
 
-  
-html:
-12345&lt;div class=&quot;test&quot;&gt;  &lt;div&gt;c..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/">
-        <h2 class="post-title">
-            关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                问题在连接github时，执行”ssh -T git@github.com“命令时，出现
-
-Error: ssh: connect to host github.com port 22: Connection refused  
-
-
-解决办法在存放公钥私钥(id_rsa和id_rsa.pub)的..
+1、配置文件 .babelrcBabel的配置文件是.babelrc。该文件基本格式:
+{
+    &quot..
             </p>
         </div>
     </a>

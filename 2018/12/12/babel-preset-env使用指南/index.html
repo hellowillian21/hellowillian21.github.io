@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        vue-cli3.0配置webpack目录别名alias｜undefined
+        babel-preset-env使用指南｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/2018/11/28/vue-cli3.0配置webpack目录别名alias/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/12/12/babel-preset-env使用指南/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,17 +146,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>vue-cli3.0配置webpack目录别名alias</h1>
+                    <h1>babel-preset-env使用指南</h1>
                     
                     <span class="meta">
                          作者 黄伟亮
                         <span>
-                          日期 2018-11-28
+                          日期 2018-12-12
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        <a class="tag" href="/tags/#Babel" title="Babel">Babel</a>
                         
                     </div>
                 </div>
@@ -165,7 +165,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            vue-cli3.0配置webpack目录别名alias
+            babel-preset-env使用指南
         </span>
     </div>
 </header>
@@ -176,31 +176,143 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>在项目根目录下新建配置文件 <code>vue.config.js</code>, 它可以使用了webpack-chain链式API的调用方式，简化了对webpack配置的修改。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><pre><code>const path = require(&apos;path&apos;)
-function resolve (dir) {
-  return path.join(__dirname, dir)
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>babel-preset-env</code> 是非常重要且常用的插件预设。  </p>
+<p>最初，为了让开发者能够尽早用上新的JS的特性，babel团队开发了<code>babel-preset-latest</code>。这个preset比较特殊，它是多个preset的集合(es2015+)，并且随着ECMA规范的更新更加增加它的内容。<br>比如，当前它包含的preset包括:es2017、es2016、es2015。  </p>
+<p>到了明年，可能它包含的preset就包括：es2018、es2017、es2016、es2015。  </p>
+<p>随着时间的推移，babel-preset-latest 包含的插件越来越多，这带来了如下问题：  </p>
+<ol>
+<li>加载的插件越来越多，编译速度会越来越慢；  </li>
+<li>随着用户浏览器的升级，ECMA规范的支持逐步完善，编译至低版本规范的必要性在减少（比如ES6 -&gt; ES5），多余的转换不单降低执行效率，还浪费带宽。</li>
+</ol>
+<p>因为上述问题的存在，babel官方推出了babel-preset-env插件。它可以根据开发者的配置，按需加载插件。配置项大致包括：  </p>
+<ol>
+<li>需要支持的平台：比如node、浏览器等。  </li>
+<li>需要支持的平台的版本：比如支持<a href="mailto:node@6.1" target="_blank" rel="noopener">node@6.1</a>等。  </li>
+</ol>
+<p><strong>默认配置的情况下，它跟 <code>babel-preset-latest</code> 是等同的，会加载从<code>es2015</code>开始的所有preset。</strong></p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>首先，安装依赖。  </p>
+<pre><code>npm install babel-cli --save-dev  
+npm install babel-preset-env --save-dev  
+</code></pre><p>创建 index.js。  </p>
+<pre><code>let foo = () =&gt; &apos;foo&apos;;
+</code></pre><p>配置文件 .babelrc 如下，当前为默认配置。</p>
+<pre><code>{
+  &quot;presets&quot;: [ &quot;env&quot; ]
 }
-module.exports = {
-  lintOnSave: true,
-  chainWebpack: (config) =&gt; {
-      config.resolve.alias
-        .set(&apos;@&apos;, resolve(&apos;src&apos;))
-  }
+</code></pre><p>运行转换命令  </p>
+<pre><code>npx babel index.js
+</code></pre><p>转换结果如下:  </p>
+<pre><code>&apos;use strict&apos;;
+
+var foo = function foo() {
+  return &apos;foo&apos;;
+};
+</code></pre><h2 id="针对node版本的配置"><a href="#针对node版本的配置" class="headerlink" title="针对node版本的配置"></a>针对node版本的配置</h2><p>前面提到，babel-preset-env 提供了更精细化的配置，以提升编译速度，同时减少代码冗余。  </p>
+<p>我们看下实际例子。假设当前有如下代码：  </p>
+<pre><code>// index.js
+async function foo () {}
+</code></pre><p>采用 babel-preset-env，默认配置下，输出的转换结果如下（具体内容不用关心，知道很长就行了）。  </p>
+<pre><code>&quot;use strict&quot;;  
+
+var foo = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+          case &quot;end&quot;:
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function foo() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+function _asyncToGenerator(fn) {  return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(&quot;next&quot;, value); }, function (err) { step(&quot;throw&quot;, err); }); } } return step(&quot;next&quot;); }); }; }  
+</code></pre><p>如果我们的代码是打算跑在<a href="mailto:node@8.9.3" target="_blank" rel="noopener">node@8.9.3</a>版本上，那上面的兼容代码就有点多余了，因为<a href="mailto:node@8.9.3" target="_blank" rel="noopener">node@8.9.3</a>已经支持了async/await。  </p>
+<p>修改下 .babelrc，加上配置参数”target”，它表示我们需要支持哪些平台+哪些版本。这里声明我们要支持的是node版本为8.9.3。  </p>
+<pre><code>{
+  &quot;presets&quot;: [
+    [&quot;env&quot;, {
+      &quot;targets&quot;: {
+        &quot;node&quot;: &quot;8.9.3&quot;
+      }      
+    }]
+  ]
+}  
+</code></pre><p>再次进行转码，结果如下。几乎没有变化，因为node最新版本支持 async/await，因此不需要额外的兼容代码。  </p>
+<pre><code>&quot;use strict&quot;;
+
+async function foo() {}
+</code></pre><h2 id="针对浏览器版本的配置"><a href="#针对浏览器版本的配置" class="headerlink" title="针对浏览器版本的配置"></a>针对浏览器版本的配置</h2><p>babel-preset-env 同样提供了对浏览器版本的配置能力。  </p>
+<h3 id="支持特定版本的浏览器"><a href="#支持特定版本的浏览器" class="headerlink" title="支持特定版本的浏览器"></a>支持特定版本的浏览器</h3><p>假设我们的代码如下：  </p>
+<pre><code>let nick = &apos;hellowillian21&apos;;
+let desc = `你好 ${nick}`;
+</code></pre><p>如果只需要支持 IE11，那么可以这样配置。  </p>
+<pre><code>{
+  &quot;presets&quot;: [
+    [&quot;env&quot;, {
+      &quot;targets&quot;: {
+        &quot;browsers&quot;: &quot;ie 11&quot;
+      }      
+    }]
+  ]
 }
-</code></pre>
+</code></pre><p>如果只需要支持支持 Edge 16，那么可以这样配置  </p>
+<pre><code>{
+  &quot;presets&quot;: [
+    [&quot;env&quot;, {
+      &quot;targets&quot;: {
+        &quot;browsers&quot;: &quot;edge 16&quot;
+      }      
+    }]
+  ]
+}
+</code></pre><h3 id="支持特定版本范围的浏览器"><a href="#支持特定版本范围的浏览器" class="headerlink" title="支持特定版本范围的浏览器"></a>支持特定版本范围的浏览器</h3><p>大部分时候，我们要针对的都是特定范围的浏览器，比如 IE8+，那么，逐个指定是不现实的。好在 babel-preset-env 支持要支持的版本范围。<br>比如，我们需要支持 IE8+、chrome62+，那么可以这样配置：  </p>
+<pre><code>{
+  &quot;presets&quot;: [
+    [&quot;env&quot;, {
+      &quot;targets&quot;: {
+        &quot;browsers&quot;: [ &quot;ie &gt;= 8&quot;, &quot;chrome &gt;= 62&quot; ]
+      }      
+    }]
+  ]
+}
+</code></pre><p>看下前面声明的范围覆盖了那些浏览器。  </p>
+<pre><code>$ npx browserslist &quot;ie &gt;= 8, chrome &gt;= 62&quot;
+chrome 70
+chrome 69
+chrome 68
+chrome 67
+chrome 66
+chrome 65
+chrome 64
+chrome 63
+chrome 62
+ie 11
+ie 10
+ie 9
+ie 8
+</code></pre><p>对浏览器版本范围的配置，babel-preset-env 借助了 browserslist 这个库。  </p>
+<h2 id="babel-preset-env实现原理"><a href="#babel-preset-env实现原理" class="headerlink" title="babel-preset-env实现原理"></a>babel-preset-env实现原理</h2><ol>
+<li>首先，检测浏览器对JS特性的支持程度，比如通过 compat-table 这样的外部数据。  </li>
+<li>将 JS特性 跟 特定的babel插件 建立映射  </li>
+<li>stage-x 的插件不包括在内。  </li>
+<li>根据开发者的配置项，确定至少需要包含哪些插件。比如声明了需要支持 IE8+、chrome62+，那么，所有IE8+需要的插件都会被包含进去。  </li>
+</ol>
+
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/12/12/babel-preset-env使用指南/" data-toggle="tooltip" data-placement="top" title="babel-preset-env使用指南">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/11/14/axios请求JSON问题详解/" data-toggle="tooltip" data-placement="top" title="axios请求JSON问题详解">Next Post &rarr;</a>
+                        <a href="/2018/11/28/vue-cli3.0配置webpack目录别名alias/" data-toggle="tooltip" data-placement="top" title="vue-cli3.0配置webpack目录别名alias">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -219,7 +331,7 @@ module.exports = {
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#针对node版本的配置"><span class="toc-text">针对node版本的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#针对浏览器版本的配置"><span class="toc-text">针对浏览器版本的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持特定版本的浏览器"><span class="toc-text">支持特定版本的浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持特定版本范围的浏览器"><span class="toc-text">支持特定版本范围的浏览器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-preset-env实现原理"><span class="toc-text">babel-preset-env实现原理</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -241,7 +353,7 @@ module.exports = {
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        <a class="tag" href="/tags/#Babel" title="Babel">Babel</a>
                         
                     </div>
                 </section>

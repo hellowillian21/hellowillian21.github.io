@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.huangweiliang.com/2018/12/12/babel-preset-env%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2018-12-12T16:16:16.051Z</lastmod>
+  </url>  <url>
+    <loc>http://www.huangweiliang.com/2018/11/08/Babel%E8%BD%AC%E7%A0%81%E5%99%A8%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-12-12T15:29:32.091Z</lastmod>
+  </url>  <url>
     <loc>http://www.huangweiliang.com/2018/11/28/vue-cli3.0%E9%85%8D%E7%BD%AEwebpack%E7%9B%AE%E5%BD%95%E5%88%AB%E5%90%8Dalias/</loc>
     <lastmod>2018-11-28T15:42:22.230Z</lastmod>
   </url>  <url>
@@ -15,9 +21,6 @@
   </url>  <url>
     <loc>http://www.huangweiliang.com/2018/11/09/vuex%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-11-08T17:08:07.644Z</lastmod>
-  </url>  <url>
-    <loc>http://www.huangweiliang.com/2018/11/08/Babel%E8%BD%AC%E7%A0%81%E5%99%A8%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-11-08T11:51:05.822Z</lastmod>
   </url>  <url>
     <loc>http://www.huangweiliang.com/2018/11/07/vuex%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2018-11-07T10:23:46.592Z</lastmod>

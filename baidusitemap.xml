@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.huangweiliang.com/2018/12/14/CSS%E5%B8%83%E5%B1%80%E4%B9%8B%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</loc>
+    <lastmod>2018-12-14T17:38:25.930Z</lastmod>
+  </url>  <url>
+    <loc>http://www.huangweiliang.com/2018/10/21/%E8%A7%A3%E5%86%B3inline-block%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-12-14T15:40:59.430Z</lastmod>
+  </url>  <url>
     <loc>http://www.huangweiliang.com/2018/12/12/babel-preset-env%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2018-12-12T16:16:16.051Z</lastmod>
   </url>  <url>
@@ -30,9 +36,6 @@
   </url>  <url>
     <loc>http://www.huangweiliang.com/2018/10/31/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
     <lastmod>2018-10-31T11:52:24.098Z</lastmod>
-  </url>  <url>
-    <loc>http://www.huangweiliang.com/2018/10/21/%E8%A7%A3%E5%86%B3inline-block%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-10-22T13:10:28.855Z</lastmod>
   </url>  <url>
     <loc>http://www.huangweiliang.com/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/</loc>
     <lastmod>2018-10-20T14:04:03.740Z</lastmod>

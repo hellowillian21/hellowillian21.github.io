@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        
+        [译] CSS负边距｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/tags/git/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/12/15/译-CSS负边距/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -126,192 +126,164 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>[译] CSS负边距</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-12-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            [译] CSS负边距
+        </span>
+    </div>
+</header>
 
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/04/git同一项目多个远程仓库/">
-        <h2 class="post-title">
-            git同一项目多个远程仓库
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-04
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-某些场合一个git项目需要能同时使用两个甚至多个远程仓库，比如国内+国外、测试环境+生产环境，等等。
-
-1.前言在项目的根目录查看git配置文件，一般来说是这样的：  
-[core]  
-    repositoryformatversion = 0
-    filemode = false
-..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/20/Error-ssh-connect-to-host-github-com-port-22-Connection-refused/">
-        <h2 class="post-title">
-            关于github报Error: ssh: connect to host github.com port 22: Connection refused的问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                问题在连接github时，执行”ssh -T git@github.com“命令时，出现
-
-Error: ssh: connect to host github.com port 22: Connection refused  
-
-
-解决办法在存放公钥私钥(id_rsa和id_rsa.pub)的..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们都使用过CSS得外边距，但是当谈到负边距的时候，我们好像往差的方向发展啦。在网页设计中负边距的使用出现了两种极端，一种特别喜欢它，也有一些人认为这完全就是魔鬼的作品。<br>负边距的使用如下：  </p>
+<pre><code>#content {margin-left:-100px; }
+</code></pre><p>负边距通常在小范围使用。但是接下来你会看到，它能做的事情很多。下面是一些你应该知道的关于负边距的事情：  </p>
+<ul>
+<li><strong>他们是完全有效的CSS</strong><br>   这不是在跟你开玩笑。W3C甚至都说，在外边框中使用负边距是允许的。</li>
+<li><strong>负边距不是在hack</strong><br>  这是尤其正确的。正是因为没有很好地了解负边距才是导致各种奇怪的问题。只有在被用来解决其他地方的bug的时候才是hack  </li>
+<li><strong>它符合正常的文档流</strong><br>  当负边距使用在没有浮动的元素上时并不会破坏正常的文档流。所以付过你使用负边距把元素向上微调的话，所有后面的元素也会向上微调。  </li>
+<li><strong>它是相当好的兼容性</strong><br>  负边距基本上被所有现代的浏览器支持（IE6的大部分情况也是）  </li>
+<li><strong>当使用了float之后，会有不同的表现</strong><br>  负边距不是你平常使用的属性，所以使用的时候要格外小心。  </li>
+</ul>
+<h2 id="在static元素中使用负边距"><a href="#在static元素中使用负边距" class="headerlink" title="在static元素中使用负边距"></a>在static元素中使用负边距</h2><p><img src="https://raw.githubusercontent.com/hellowillian21/my-blog-images/master/2.png" alt="">  </p>
+<p>一个static元素是一个没有使用过float的元素。上面的图片展示了一个static的元素使用负边距之后的情况。  </p>
+<ul>
+<li><p>当一个static元素在top/left使用负边距时，它把元素向这个特定的方向拉，比如  </p>
+<pre><code>/* Moves the element 10px upwards */  
+#mydiv1 {margin-top:-10px;}
+</code></pre></li>
+<li><p>但是当你将负边距设置为相对bottom/right时，它并不会把元素向下或右拉，相反，它会把后面的元素往里面拉，从而覆盖自己。  </p>
+<pre><code>/*
+ 所有在#mydiv1后面的元素都会向上
+ 移动10px，而#mydiv1一点都不会移动
+*/
+#mydiv1{margin-bottom:-10px;}
+</code></pre></li>
+<li><p>如果宽度没有设置，左右负边距会把元素向两个方向拉以增加宽度。在这里margin的作用相当于padding</p>
+</li>
+</ul>
+<h2 id="在浮动中使用负边距"><a href="#在浮动中使用负边距" class="headerlink" title="在浮动中使用负边距"></a>在浮动中使用负边距</h2><p>我们的html代码：  </p>
+<pre><code>&lt;div id=&quot;mydiv1&quot;&gt;First&lt;/div&gt;
+&lt;div id=&quot;mydiv2&quot;&gt;Second&lt;/div&gt;
+</code></pre><ul>
+<li><p>如果对一个浮动的元素使用负边距，它会产生一个空白，其他元素就可以覆盖这一部分。这个技巧可以很好地用在流式布局。比如有一列宽度100%，另一列有固定的宽度，比如说100px。  </p>
+<pre><code>/* 
+A negative margin is applied opposite the float 
+*/
+#mydiv1 {float:left; margin-right:-100px;}
+</code></pre></li>
+<li>如果两个元素都使用了左浮动并且设置margin-right:-20px。#mydiv2会把#mydiv1看成宽度缩小20px（所以会覆盖一部分），但是有趣的是#mydiv1并不会有任何变化，而是依然保持原先的宽度。  </li>
+<li>如果负边距和宽度一样大的话，它就会被完全覆盖掉。因为外边距，内边距，边框和内容加起来等于元素的宽度。如果负外边距等于元素的宽度的话，那么该元素的宽度就会变成0px。</li>
 </ul>
 
+                <hr>
+                
 
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
+                <ul class="pager">
                     
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
-                    <h5><a href="/about/">黄伟亮</a></h5>
+                    <li class="next">
+                        <a href="/2018/12/14/CSS布局之圣杯布局和双飞翼布局/" data-toggle="tooltip" data-placement="top" title="CSS布局之圣杯布局和双飞翼布局">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在static元素中使用负边距"><span class="toc-text">在static元素中使用负边距</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在浮动中使用负边距"><span class="toc-text">在浮动中使用负边距</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#Babel" title="Babel" rel="2">Babel</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                    
-                    <a href="/tags/#CSS" title="CSS" rel="3">CSS</a>
-                    
-                    
-                    
-                    <a href="/tags/#vue" title="vue" rel="4">vue</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

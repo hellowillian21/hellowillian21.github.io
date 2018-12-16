@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        
+        call、apply、bind的区别,并重写bind｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/tags/Babel/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/12/16/call、apply、bind的区别-并重写bind/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -126,188 +126,199 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>call、apply、bind的区别,并重写bind</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-12-16
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            call、apply、bind的区别,并重写bind
+        </span>
+    </div>
+</header>
 
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/12/12/babel-preset-env使用指南/">
-        <h2 class="post-title">
-            babel-preset-env使用指南
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-12
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                前言babel-preset-env 是非常重要且常用的插件预设。  
-最初，为了让开发者能够尽早用上新的JS的特性，babel团队开发了babel-preset-latest。这个preset比较特殊，它是多个preset的集合(es2015+)，并且随着ECMA规范的更新更加增加它的内容。比..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/11/08/Babel转码器笔记/">
-        <h2 class="post-title">
-            Babel转码器笔记
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-08
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-Babel (babeljs.io) 是一个广为使用的es6转码器,可以将es6代码转为es5代码，使得编写es6程序不用担心现有环境是否支持。以下为学习阮一峰babel摘要笔记。
-
-1、配置文件 .babelrcBabel的配置文件是.babelrc。该文件基本格式:
-{
-    &quot..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>var obj = {name:&quot;张三“};
+function fn(num1,num2) {
+      consloe.log(num1 + num2);
+      console.log(this);
+}  
+</code></pre><h2 id="相同处"><a href="#相同处" class="headerlink" title="相同处"></a>相同处</h2><ol>
+<li>call与apply:<br>apply和call方法的作用是一模一样的，都是用来改变方法的this关键字并把方法执行；而且在严格模式下和非严格模式下对于第一个参数是null / undefined这种情况的规律也是一样的  </li>
+<li>bind:<br><strong>bind方法在IE6-8下不兼容</strong>，和call / apply类似都使用来改变this关键字的</li>
+</ol>
+<h2 id="不同处"><a href="#不同处" class="headerlink" title="不同处"></a>不同处</h2><ol>
+<li><p>call与apply唯一区别  </p>
+<pre><code>fn.call(obj,100,200);
+fn.apply(obj,[100,200]);  
+</code></pre><p>call在给fn传递参数的时候，是一个个的传递值的，而apply不是一个个传，而是把要给fn传递的参数统一的放在一个数组中进行操作，但是也相当于一个个的给fn的形参赋值  </p>
+</li>
+<li><p>call与bind区别</p>
+<pre><code>fn.call(obj,100,200); //改变this和执行fn函数一起都完成了
+fn.bind(obj,100,200); // 只是改变了fn中的this为obj，并且给fn传递了两个参数值100,200，但是此时并没有把fn这个函数执行
+</code></pre><p>如何让bind执行：  </p>
+<pre><code>var tempFn=fn.bind(obj,100,200); 
+tempFn();
+</code></pre><p>（bind预处理：事先把fn的this改变为想要的结果，并且把对应的参数值也准备好，以后用到了，直接执行即可）</p>
+</li>
+</ol>
+<h2 id="总结一下call与apply的作用"><a href="#总结一下call与apply的作用" class="headerlink" title="总结一下call与apply的作用"></a>总结一下call与apply的作用</h2><ul>
+<li>调用函数。</li>
+<li>改变this的指向.</li>
 </ul>
+<p><strong>最重要的是，我们可以衍生出一个作用：借用，借用，借用。</strong></p>
+<p><strong>例子:</strong>  </p>
+<ul>
+<li><p>求出数组arr=[1,7,10,5,0]中最大的值，一般可以选择排序或者借个变量判断。当然，我们也会想到Math.max()，但是，这个方法不接受数组，这个时候就可以使用apply去借用这个函数。  </p>
+<pre><code>var arr=[1,7,10,5,0]
+//这里this没有任何意义
+Math.max.apply(null,arr)//10
+</code></pre></li>
+<li><p>再来一个例子，我们知道document.getElementByTagName()获取的是一个类数组对象，不能使用数组的push,pop之类的方法，这时候可以用借用数组的slice（分割数组）的方法进行转化。  </p>
+<pre><code>//先往页面放几个li
+var lis=document.getElementsByTagName(&apos;li&apos;);
+var arrLis = [].slice.call(lis)//或者Array.prototype.slice.call(lis)
+console.log(arrLis.length);
+arrLis.pop();
+console.log(arrLis.length)
+</code></pre></li>
+<li><p>又或者我们有一个对象，想要用另一个对象去调用他的属性方法。就可以这样。  </p>
+<pre><code>function Animal (age){
+        this.age=age;
+  }
+  function Cat(color,age){
+      this.color=color;
 
+      Animal.call(this,age)
+  }
+  var cat1 = new Cat(&apos;white&apos;,2)
+  console.log(cat1.age)
+</code></pre></li>
+</ul>
+<h2 id="重写bind"><a href="#重写bind" class="headerlink" title="重写bind"></a>重写bind</h2><pre><code>var that = null;
+Function.prototype.bind = function(obj,arg){
+    if (that == null){
+        that = this
+    }
+    return function(){
+        return that.call(obj,arg);
 
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+    }
+};
+function foo() {
+    return this.bar;
+}
 
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
+foo = foo.bind({bar:1});
+foo = foo.bind({bar:2});
+var result = foo();
+console.log(result); //2
+</code></pre>
+                <hr>
+                
+
+                <ul class="pager">
                     
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
-                    <h5><a href="/about/">黄伟亮</a></h5>
+                    <li class="next">
+                        <a href="/2018/12/15/译-CSS负边距/" data-toggle="tooltip" data-placement="top" title="[译] CSS负边距">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相同处"><span class="toc-text">相同处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不同处"><span class="toc-text">不同处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结一下call与apply的作用"><span class="toc-text">总结一下call与apply的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重写bind"><span class="toc-text">重写bind</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#CSS" title="CSS" rel="3">CSS</a>
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                    
-                    <a href="/tags/#JavaScript" title="JavaScript" rel="2">JavaScript</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#Babel" title="Babel" rel="2">Babel</a>
-                    
-                    
-                    
-                    <a href="/tags/#vue" title="vue" rel="4">vue</a>
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

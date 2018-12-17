@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <!-- <title>
         
-        
+        100盏灯开关问题｜undefined
         
     </title> -->
     <title>黄伟亮的博客</title>
 
-    <link rel="canonical" href="http://www.huangweiliang.com/tags/JavaScript/">
+    <link rel="canonical" href="http://www.huangweiliang.com/2018/12/17/100盏灯开关问题/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
 " data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -126,206 +126,156 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
-                        <h5><a href="/about/">黄伟亮</a></h5>
-                        <p>code learner</p>
+
+<img class="wechat-title-img" src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>100盏灯开关问题</h1>
+                    
+                    <span class="meta">
+                         作者 黄伟亮
+                        <span>
+                          日期 2018-12-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            100盏灯开关问题
+        </span>
+    </div>
+</header>
 
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/12/16/call、apply、bind的区别-并重写bind/">
-        <h2 class="post-title">
-            call、apply、bind的区别,并重写bind
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                前言var obj = {name:&quot;张三“};
-function fn(num1,num2) {
-      consloe.log(num1 + num2);
-      console.log(this);
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
+<p>有 100 盏灯，编号依次为 1、2、3…100，电灯全部关着。开关摸一次为开，再摸一次即关。现在——<br>第 1 个人把所有编号为 1 的倍数（1、2、3…100）的灯的开关都摸了一次；<br>第 2 个人把所有编号为 2 的倍数（2、4、6…100）的灯的开关都摸了一次：<br>第 3 个人把所有编号为 3 的倍数（3、6、9…99）的灯的开关都摸了一次；<br>……<br>第 100 个人把第 100 号灯的开关摸了一次；<br>问：此时还有几盏灯亮着？它们的编号都是什么？  </p>
+</blockquote>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><pre><code>/*
+ * 计算编号为 n 的灯开关被触摸的次数 k；
+ */
+function getTurns(n){
+    var k = 0;
+    for (var i = 1; i &lt;= 100; i++) {
+        // 循环遍历 100 人，如若人次 i 能被灯号 n 整除，则计数、累加、返回；
+        if (n % i === 0) { k++ }
+    }
+    return k;
 }  
-相同处
-call与apply:apply和call方法的作用是一..
-            </p>
-        </div>
-    </a>
 
-</div>
+/*  
+* 计算 100 盏灯亮着的灯数 up；
+*/
+function getUps(){
+// 一开始亮着的灯数 up 为 0；
+    var up = 0;
+    for (var j = 1; j &lt;= 100; j++) {
+        // 循环遍历 100 盏灯，如若灯次 j 被触摸的次数不为偶数，说明最还是亮着的，则计数、累加；
+        if (getTurns(j) % 2 != 0) {
+            up++;
+            console.log(j);
+        }
+    }
+    // 输出亮着的灯数 up；
+    return up;
+}
+console.log(`有${getUps()}盏灯亮着`)
+</code></pre>
+                <hr>
+                
 
-<hr>
-
-
-
-<div class="post-preview " style="background-image: url('')">
-    <a href="/2018/10/31/执行上下文生命周期/">
-        <h2 class="post-title">
-            执行上下文生命周期
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-31
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                1.创建
-生成变量对象  
-VO AO
-
-
-建立作用域  
-提升
-
-
-确定this指向  
-
-2.执行
-变量赋值  
-函数引用  
-执行其他代码  
-
-3.执行后出栈，等待被回收
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    <!-- <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&v=4"/> -->
+                <ul class="pager">
                     
-                    <img src="https://avatars3.githubusercontent.com/u/31768220?s=460&amp;v=4">
                     
-                    <h5><a href="/about/">黄伟亮</a></h5>
+                    <li class="next">
+                        <a href="/2018/12/16/call、apply、bind的区别-并重写bind/" data-toggle="tooltip" data-placement="top" title="call、apply、bind的区别,并重写bind">Next Post &rarr;</a>
+                    </li>
                     
-                    <p>code learner</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/hellowillian21">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
 
-                        
-                    </ul>
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解法"><span class="toc-text">解法</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    <a href="/tags/#Babel" title="Babel" rel="2">Babel</a>
-                    
-                    
-                    
-                    <a href="/tags/#CSS" title="CSS" rel="3">CSS</a>
-                    
-                    
-                    
-                    <a href="/tags/#git" title="git" rel="2">git</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#vue" title="vue" rel="4">vue</a>
-                    
-                    
-                    
-                    <a href="/tags/#JavaScript" title="JavaScript" rel="2">JavaScript</a>
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
